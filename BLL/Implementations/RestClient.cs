@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using BLL.Interfaces;
 using Flurl.Http;
 
-namespace BLL.Interfaces
+namespace BLL.Implementations
 {
     public class RestClient : IRestClient
     {
@@ -15,7 +14,7 @@ namespace BLL.Interfaces
 
         public async Task<T> Post<T>(string url, string body)
         {
-            var response = await url.PostJsonAsync(body);
+            var response = await url.PostUrlEncodedAsync(new StringContent(body));
             return await response.GetJsonAsync<T>();
         }
     }

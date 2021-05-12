@@ -11,17 +11,17 @@ namespace BLL.Implementations
 {
     public class PokeAPIServices : IPokeAPIService
     {
-        private readonly IOptions<APIEndpoints> apiEndpoints;
-        private readonly IRestClient restClient;
+        private readonly IOptions<APIEndpoints> _apiEndpoints;
+        private readonly IRestClient _restClient;
 
         public PokeAPIServices(IOptions<APIEndpoints> apiEndpoints, IRestClient restClient)
         {
-            this.apiEndpoints = apiEndpoints;
-            this.restClient = restClient;
+            this._apiEndpoints = apiEndpoints;
+            this._restClient = restClient;
         }
         public async Task<PokemonDetails> Get(string name)
         {
-            var data = await restClient.Get<PokemonDetails>(apiEndpoints.Value.PokemonSpecies.Replace("{NAME}", name));
+            var data = await _restClient.Get<PokemonDetails>(_apiEndpoints.Value.PokemonSpecies.Replace("{NAME}", name));
             return data;
         }
     }

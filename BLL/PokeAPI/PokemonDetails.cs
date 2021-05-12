@@ -14,15 +14,17 @@ namespace BLL.PokeAPI
         [JsonProperty("order")]
         public int Order { get; set; }
         [JsonProperty("is_legendary")]
-        public bool Islegendary { get; set; }
+        public bool IsLegendary { get; set; }
         [JsonProperty("is_mythical")]
-        public bool Ismythical { get; set; }
+        public bool IsMythical { get; set; }
         [JsonProperty("habitat")]
         public Habitat Habitat { get; set; }
         [JsonProperty("Names")]
         public List<PokemonName> Names { get; set; }
         [JsonProperty("form_descriptions")]
         public List<FormDescription> FormDescriptions { get; set; }
+        [JsonProperty("flavor_text_entries")]
+        public List<FlavorTextEntry> FlavorTextEntries { get; set; }
 
     }
 }

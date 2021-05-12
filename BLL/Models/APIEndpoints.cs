@@ -7,5 +7,7 @@ namespace BLL.Models
     public class APIEndpoints
     {
         public string PokemonSpecies { get; set; }
+        public string YodaTranslator { get; set; }
+        public string ShakespeareTranslator { get; set; }
     }
 }

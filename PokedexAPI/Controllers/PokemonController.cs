@@ -13,26 +13,25 @@ namespace PokedexAPI.Controllers
     [ApiController]
     public class PokemonController : ControllerBase
     {
-        private readonly IPokeAPIService pokeAPIService;
+        private readonly IPokemonFacade _pokemonFacade;
 
-        public PokemonController(IPokeAPIService pokeAPIService)
+        public PokemonController(IPokemonFacade pokemonFacade)
         {
-            this.pokeAPIService = pokeAPIService;
+            _pokemonFacade = pokemonFacade;
         }
 
         [HttpGet]
         [Route("{name}")]
-        public async Task<PokemonDetails> Get(string name)
+        public async Task<PokedexDetails> Get(string name)
         {
-            try
-            {
-                return await pokeAPIService.Get(name);
-            }
-            catch (Exception)
-            {
+            return await _pokemonFacade.GetPokemonDetails(name);
+        }
 
-                throw;
-            }
+        [HttpGet]
+        [Route("translated/{name}")]
+        public async Task<PokedexDetails> Translate(string name)
+        {
+            return await _pokemonFacade.GetPokemonDetailsTranslated(name);
         }
     }
 }
